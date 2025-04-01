@@ -57,7 +57,6 @@
     "@types/node": "^22.13.16",
     "@typescript-eslint/eslint-plugin": "8.29.0",
     "@typescript-eslint/parser": "8.29.0",
-    "camelcase": "^8.0.0",
     "eslint": "8.57.1",
     "eslint-plugin-qwik": "^1.12.1",
     "lucide": "^0.486.0",

@@ -1,15 +1,7 @@
 import { mkdir, writeFile } from "fs/promises";
 import { createWriteStream, readFileSync } from "fs";
-import camelcase from "camelcase";
 
 import lucide from "lucide";
-import iconNames from './tags.json' with { type: 'json' };
-
-// icon keys to lowercase
-const icons = Object.fromEntries(Object.entries(lucide.icons).map(entry => {
-  const [key, value] = entry;
-  return [key.toLowerCase(), value];
-}));
 
 function buildContent(icon) {
   const elements = icon.map(t => {
@@ -34,7 +26,7 @@ function buildIcon(typesRelPath, baseIconRelPath) {
 };
 
 function buildExportLine(name, iconsRelPath) {
-  return `export { default as ${camelcase(name, {pascalCase: true})}Icon } from '${iconsRelPath}${name}';\n`;
+  return `export { default } as ${name} from '${iconsRelPath}${name}';\n`;
 }
 
 
@@ -44,16 +36,15 @@ async function build() {
   const build = buildIcon("../../icon-props", "../base-icon")
 
   await mkdir(iconsPath, {recursive: true});
-  await Promise.all(Object.keys(iconNames).map(k => {
-    const name = k;
-    const icon = icons[camelcase(name).toLowerCase()];
+  await Promise.all(Object.keys(lucide.icons).map(name => {
+    const icon = lucide.icons[name];
 
     return writeFile(`${iconsPath}${name}.tsx`, build(name, buildContent(icon)), "utf8");
   }));
 
   // export icons
   const indexFile = createWriteStream("./src/index.ts", "utf8");
-  Object.keys(iconNames).forEach(k => indexFile.write(buildExportLine(k, "./components/icons/")));
+  Object.keys(lucide.icons).forEach(k => indexFile.write(buildExportLine(k, "./components/icons/")));
   indexFile.close();
 }
 

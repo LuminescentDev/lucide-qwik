@@ -4,7 +4,7 @@
 
 Lucide is a community-run fork of [Feather Icons](https://github.com/feathericons/feather "https://github.com/feathericons/feather"), open for anyone to contribute icons.
 
-This icon library supports Lucide [v0.104.0](https://github.com/lucide-icons/lucide "https://github.com/lucide-icons/lucide").
+This icon library supports Lucide [v0.486.0](https://github.com/lucide-icons/lucide "https://github.com/lucide-icons/lucide").
 
 ### Installation
 
@@ -44,8 +44,8 @@ export interface IconProps extends QwikDOMAttributes {
   size?: number,            // default: 24
   color?: string,           // default: "currentColor"
   strokeWidth?: number,     // default: 2
-  strokeLinecap?: string,   // default: "round"
-  strokeLinejoin?: string   // default: "round"
+  strokeLinecap?: "round" | "butt" | "square" | "inherit" | undefined,   // default: "round"
+  strokeLinejoin?: "round" | "inherit" | "miter" | "bevel" | undefined   // default: "round"
 }
 ```
 
@@ -53,4 +53,4 @@ Notice that `IconProps` extends `QwikDOMAttributes` so `Icon` component also hav
 
 ### License
 
-This library is licensed under [MIT License](https://github.com/egmaleta/lucide-qwik/blob/main/LICENSE "https://github.com/egmaleta/lucide-qwik/blob/main/LICENSE").
+This library is licensed under [MIT License](https://github.com/LuminescentDev/lucide-qwik/blob/main/LICENSE "https://github.com/LuminescentDev/lucide-qwik/blob/main/LICENSE").

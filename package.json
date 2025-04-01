@@ -1,15 +1,14 @@
 {
   "name": "lucide-qwik",
-  "version": "1.0.0",
+  "version": "0.485.0",
   "description": "Lucide icon library package for Qwik applications",
   "author": {
-    "name": "Eduardo García Maleta",
-    "email": "egmaleta@proton.me",
-    "url": "https://github.com/egmaleta"
+    "name": "Luminescent",
+    "url": "https://luminescent.dev"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/egmaleta/lucide-qwik.git"
+    "url": "https://github.com/LuminescentDev/lucide-qwik.git"
   },
   "license": "LICENSE",
   "keywords": [
@@ -38,35 +37,30 @@
   "private": false,
   "type": "module",
   "scripts": {
-    "build": "qwik build",
+    "build": "pnpm build.icons && qwik build",
     "build.icons": "node --trace-warnings build.js",
     "build.lib": "vite build --mode lib",
     "build.types": "tsc --emitDeclarationOnly",
-    "dev": "vite --mode ssr",
-    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
-    "fmt": "prettier --write .",
-    "fmt.check": "prettier --check .",
     "lint": "eslint \"src/**/*.ts*\"",
-    "release": "np",
+    "release": "tsx tools/release.ts",
     "start": "vite --open --mode ssr",
     "qwik": "qwik",
     "test": "echo no tests for now"
   },
   "devDependencies": {
-    "@builder.io/qwik": "0.16.1",
-    "@types/eslint": "8.4.10",
-    "@types/node": "^18.11.16",
-    "@types/node-fetch": "latest",
-    "@typescript-eslint/eslint-plugin": "5.46.1",
-    "@typescript-eslint/parser": "5.46.1",
-    "eslint": "8.30.0",
-    "eslint-plugin-qwik": "latest",
-    "lucide": "^0.104.0",
-    "node-fetch": "3.3.0",
-    "np": "7.6.1",
-    "prettier": "2.8.1",
-    "typescript": "4.9.4",
-    "undici": "5.14.0",
-    "vite": "4.0.1"
+    "@builder.io/qwik": "1.12.1",
+    "@types/eslint": "8.56.12",
+    "@types/node": "^22.13.16",
+    "@typescript-eslint/eslint-plugin": "8.29.0",
+    "@typescript-eslint/parser": "8.29.0",
+    "camelcase": "^8.0.0",
+    "eslint": "8.57.1",
+    "eslint-plugin-qwik": "^1.12.1",
+    "lucide": "^0.486.0",
+    "nx": "^20.7.0",
+    "typescript": "5.8.2",
+    "undici": "7.6.0",
+    "vite": "6.2.4",
+    "yargs": "^17.7.2"
   }
 }

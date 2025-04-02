@@ -3,6 +3,15 @@ import { createWriteStream, readFileSync } from "fs";
 
 import lucide from "lucide";
 
+// remove duplicate icons
+const icons = Object.keys(lucide.icons).reduce((acc, name) => {
+  const icon = lucide.icons[name];
+  const duplicate = Object.values(acc).find(i => JSON.stringify(i) === JSON.stringify(icon));
+  if (!duplicate) acc[name] = icon;
+
+  return acc;
+}, {});
+
 function buildContent(icon) {
   const elements = icon.map(t => {
     const tag = t[0];
@@ -26,7 +35,7 @@ function buildIcon(typesRelPath, baseIconRelPath) {
 };
 
 function buildExportLine(name, iconsRelPath) {
-  return `export { default } as ${name} from '${iconsRelPath}${name}';\n`;
+  return `export { default as ${name} } from '${iconsRelPath}${name}';\n`;
 }
 
 
@@ -36,15 +45,15 @@ async function build() {
   const build = buildIcon("../../icon-props", "../base-icon")
 
   await mkdir(iconsPath, {recursive: true});
-  await Promise.all(Object.keys(lucide.icons).map(name => {
-    const icon = lucide.icons[name];
+  await Promise.all(Object.keys(icons).map(name => {
+    const icon = icons[name];
 
     return writeFile(`${iconsPath}${name}.tsx`, build(name, buildContent(icon)), "utf8");
   }));
 
   // export icons
   const indexFile = createWriteStream("./src/index.ts", "utf8");
-  Object.keys(lucide.icons).forEach(k => indexFile.write(buildExportLine(k, "./components/icons/")));
+  Object.keys(icons).forEach(k => indexFile.write(buildExportLine(k, "./components/icons/")));
   indexFile.close();
 }
 

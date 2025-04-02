@@ -9,7 +9,7 @@ This icon library supports Lucide [v0.486.0](https://github.com/lucide-icons/luc
 ### Installation
 
 ```shell
-npm install lucide-qwik
+npm install lucide-icons-qwik
 ```
 
 ### Usage
@@ -19,13 +19,13 @@ npm install lucide-qwik
 You can import the icon(s) you need as usual:
 
 ```ts
-import { ThumbsUpIcon } from "lucide-qwik";
+import { ThumbsUpIcon } from "lucide-icons-qwik";
 ```
 
 or import them all at once:
 
 ```ts
-import * as Icons from "lucide-qwik";
+import * as Icons from "lucide-icons-qwik";
 
 export const App = component$(() => {
   return <div>
@@ -53,4 +53,4 @@ Notice that `IconProps` extends `QwikDOMAttributes` so `Icon` component also hav
 
 ### License
 
-This library is licensed under [MIT License](https://github.com/LuminescentDev/lucide-qwik/blob/main/LICENSE "https://github.com/LuminescentDev/lucide-qwik/blob/main/LICENSE").
+This library is licensed under [MIT License](https://github.com/LuminescentDev/lucide-icons-qwik/blob/main/LICENSE "https://github.com/LuminescentDev/lucide-icons-qwik/blob/main/LICENSE").
